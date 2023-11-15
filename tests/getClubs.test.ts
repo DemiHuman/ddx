@@ -6,6 +6,9 @@ test.describe("АПИ  тесты на получение списка клуб�
         const response = await request.get(
             `${api.urls.base_url_api}${api.path.clubs}`,
             {
+                headers: {
+                    'Authorization': `${api.tokens.test}`
+                },
                 params: {
                     "session_id": "1",
                     "request_id": "2",
@@ -20,6 +23,9 @@ test.describe("АПИ  тесты на получение списка клуб�
         const response = await request.get(
             `${api.urls.base_url_api}${api.path.clubs}`,
             {
+                headers: {
+                    'Authorization': `${api.tokens.test}`
+                },
                 params: {
                     "session_id": "2",
                     "request_id": "2",
