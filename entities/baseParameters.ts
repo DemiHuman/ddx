@@ -8,10 +8,7 @@ export async function getBaseParameters(): Promise<object> {
             };
 };
 
-export async function getBaseUserData(sport_experience?: string): Promise<object> {
-    let sprt_experience: string = "Нет опыта";
-    if(sport_experience != null) sprt_experience = sport_experience;
-
+export async function getBaseUserData(sport_experience: string = "Нет опыта"): Promise<object> {
     return { 
                 session_id: await getRandomSessionId(),
                 request_id: await getRandomRequestId(),
@@ -31,9 +28,34 @@ export async function getBaseUserData(sport_experience?: string): Promise<object
                     club_access: false,
                     admin_panel_access: false,
                     class_registration_access: false,
-                    sport_experience: sprt_experience 
+                    sport_experience: sport_experience
                 }};
 };
+
+export async function getBaseUserDataWithDetailingClubId(club_id: number): Promise<object> {
+    return { 
+                session_id: await getRandomSessionId(),
+                request_id: await getRandomRequestId(),
+                request_source: "crm",
+                data: {
+                    email: await getRandomEmail(),
+                    name: "Гладиолус",
+                    last_name: "Гладиолусов",
+                    middle_name: "Гладиолусович",
+                    sex: "male",
+                    password: "qwerty123",
+                    phone: await getRandomPhone(),
+                    birthday: "1993-02-05",
+                    lang: "ru",
+                    user_foto_id: 4,
+                    home_club_id: club_id,
+                    club_access: false,
+                    admin_panel_access: false,
+                    class_registration_access: false,
+                    sport_experience: "Нет опыта"
+                }};
+};
+
 
 export async function getBaseUserDataWithoutPasswordFild(sport_experience?: string): Promise<object> {
     let sprt_experience: string = "Нет опыта";
