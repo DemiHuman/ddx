@@ -35,6 +35,33 @@ export async function getBaseUserData(sport_experience?: string): Promise<object
                 }};
 };
 
+export async function getBaseUserDataWithoutPasswordFild(sport_experience?: string): Promise<object> {
+    let sprt_experience: string = "Нет опыта";
+    if(sport_experience != null) sprt_experience = sport_experience;
+
+    return { 
+                session_id: await getRandomSessionId(),
+                request_id: await getRandomRequestId(),
+                request_source: "crm",
+                data: {
+                    email: await getRandomEmail(),
+                    name: "Гладиолус",
+                    last_name: "Гладиолусов",
+                    middle_name: "Гладиолусович",
+                    sex: "male",
+                    phone: await getRandomPhone(),
+                    birthday: "1993-02-05",
+                    lang: "ru",
+                    user_foto_id: 4,
+                    home_club_id: 5,
+                    club_access: false,
+                    admin_panel_access: false,
+                    class_registration_access: false,
+                    sport_experience: sprt_experience 
+                }};
+};
+
+
 export async function getBaseCardData(): Promise<object> {
     return { 
             ...await getBaseParameters(),

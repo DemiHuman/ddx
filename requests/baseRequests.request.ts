@@ -4,6 +4,7 @@ import { log } from "../utils/loggers";
 
 
 export default class BaseRequests {
+    
     protected baseUrl: string;
 
     constructor( 
