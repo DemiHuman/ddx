@@ -15,3 +15,7 @@ export async function getRandomRequestId(): Promise<UUID> {
 export async function getRandomSessionId(): Promise<UUID> {
     return randomUUID();
 };
+
+export async function getRandomNumber(): Promise<string> {
+    return `${new Date().getTime().toString()}`;
+};

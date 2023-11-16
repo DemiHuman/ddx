@@ -1,4 +1,4 @@
-import { getRandomEmail, getRandomPhone, getRandomRequestId, getRandomSessionId } from "../utils/randomUtils";
+import { getRandomEmail, getRandomNumber, getRandomPhone, getRandomRequestId, getRandomSessionId } from "../utils/randomUtils";
 
 export async function getBaseParameters(): Promise<object> {
     return { 
@@ -35,6 +35,20 @@ export async function getBaseUserData(sport_experience?: string): Promise<object
                 }};
 };
 
+export async function getBaseCardData(): Promise<object> {
+    return { 
+            ...await getBaseParameters(),
+            data: [{
+                access_card_number: await getRandomNumber(),
+                user_id: 1319472,
+                type: "bracelet",
+                is_blocked: false,
+                is_lost: false,
+                is_deleted: false,
+                block_previous_card: false,
+                payable: true
+            }]};
+};
 
 export async function getBaseNoteData(): Promise<object> {
     return {   
@@ -51,7 +65,7 @@ export async function getBaseNoteData(): Promise<object> {
     }
 };
 
-export const sport_experience_types = [
+export const sportExperienceTypes = [
     "Нет опыта", 
     "0-6 месяцев", 
     "6-12 месяцев", 
@@ -60,3 +74,5 @@ export const sport_experience_types = [
     "3-5 лет",
     "Больше 5 лет"
 ];
+
+export const clubsId = [1, 2, 3, 4, 5];

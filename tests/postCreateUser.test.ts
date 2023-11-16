@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import api from "./../api.json";
 import { getRandomEmail, getRandomPhone, getRandomRequestId, getRandomSessionId } from '../utils/randomUtils';
-import { getBaseUserData, sport_experience_types } from '../entities/baseParameters';
+import { getBaseUserData, sportExperienceTypes } from '../entities/baseParameters';
 
 test.describe("Тесты на создание нового клиента", async () => {
     test("[pozitive] Создание нового клиента", async ({ request }) => {
@@ -17,20 +17,20 @@ test.describe("Тесты на создание нового клиента", as
         expect(response.status(), await response.text()).toBe(200);
     });
 
-    for (const sport_experience of sport_experience_types) {
-        test(`[pozitive] Создание нового клиента c sport_experience = ${sport_experience}`, async ({ request }) => {
+    sportExperienceTypes.forEach(sportExperience => {
+        test(`[pozitive] Создание нового клиента c опытом: ${sportExperience}`, async ({ request }) => {
             const response = await request.post(
                 `${api.urls.base_url_api}${api.path.users}`,
                 {
                     headers: {
                         "Authorization": `${api.tokens.test}`
                     },
-                    data: {...await getBaseUserData(sport_experience)},
+                    data: {...await getBaseUserData(sportExperience)},
                 });
 
             expect(response.status(), await response.text()).toBe(200);
         });
-    };
+    });
 
 
     test("[negative] Создание нового клиента без поля 'password'", async ({ request }) => {
