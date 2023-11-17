@@ -22,6 +22,11 @@ export default defineConfig({
     ['html', {
       open: 'never',
       outputFolder: 'playwright-report/'
+    }],
+    ["allure-playwright", {
+        detail: false,
+        outputFolder: "my-allure-results",
+        suiteTitle: true,
     }]
   ],
 
