@@ -11,4 +11,17 @@ export default class UserRequests extends BaseRequests {
     async getUserById(status: number, parameters: object, user_Id: number) : Promise<APIResponse> {
         return await this.get(`${this.baseUrl}${paths.path.users}/${user_Id}`, status, parameters);
     };
+
+    async searchUserByPhone(status: number, body: object) : Promise<APIResponse> {
+        return await this.post(`${this.baseUrl}${paths.path.users_search}`, status, body);
+    };
+
+
+    async searchUserByFirsNameLastNameEmail(status: number, body: object) : Promise<APIResponse> {
+        return await this.post(`${this.baseUrl}${paths.path.users_search}`, status, body);
+    };
+
+    async searchUserByNameLastNameBirthday(status: number, body: object) : Promise<APIResponse> {
+        return await this.post(`${this.baseUrl}${paths.path.users_search}`, status, body);
+    };
 }

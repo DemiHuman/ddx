@@ -1,4 +1,4 @@
-import { getRandomEmail, getRandomNumber, getRandomPhone, getRandomRequestId, getRandomSessionId } from "@utils/randomUtils";
+import { getRandomEmail, getRandomFirstName, getRandomLastName, getRandomNumber, getRandomPhone, getRandomRequestId, getRandomSessionId } from "@utils/randomUtils";
 
 export async function getBaseParameters(): Promise<object> {
     return { 
@@ -15,8 +15,8 @@ export async function getBaseUserData(sportExperience: string = "Нет опыт
                 request_source: "crm",
                 data: {
                     email: await getRandomEmail(),
-                    name: "Гладиолус",
-                    last_name: "Гладиолусов",
+                    name: await getRandomFirstName(),
+                    last_name: await getRandomLastName(),
                     middle_name: "Гладиолусович",
                     sex: "male",
                     password: "qwerty123",
@@ -39,8 +39,8 @@ export async function getBaseUserDataWithDetailingClubId(clubId: number): Promis
                 request_source: "crm",
                 data: {
                     email: await getRandomEmail(),
-                    name: "Гладиолус",
-                    last_name: "Гладиолусов",
+                    name: await getRandomFirstName(),
+                    last_name: await getRandomLastName(),
                     middle_name: "Гладиолусович",
                     sex: "male",
                     password: "qwerty123",
@@ -67,8 +67,8 @@ export async function getBaseUserDataWithoutPasswordFild(sportExperience?: strin
                 request_source: "crm",
                 data: {
                     email: await getRandomEmail(),
-                    name: "Гладиолус",
-                    last_name: "Гладиолусов",
+                    name: await getRandomFirstName(),
+                    last_name: await getRandomLastName(),
                     middle_name: "Гладиолусович",
                     sex: "male",
                     phone: await getRandomPhone(),
