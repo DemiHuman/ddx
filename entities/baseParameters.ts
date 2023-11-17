@@ -123,8 +123,7 @@ export async function getUserPaymentPlansData(club_id: number): Promise<object> 
         payment_plan_id: 18,
         club_id: club_id,
         verification_token: "cdcd4d4b-91b1-4c8b-9a5a-c1ebb65b5392",
-        discount_id: 199//,
-        //discount_code_id: 222
+        discount_id: 199
     }
 };
 
