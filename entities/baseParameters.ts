@@ -130,7 +130,7 @@ export async function getUserPaymentPlansData(clubId: number = 5): Promise<objec
 export async function getPaymentData(
     userId: number, 
     paymentType: string, 
-    transactionProviders: number, 
+    transactionProviders: number | null, 
     transactionGate: number, 
     paymentProviders: number, 
     userPaymentPlanId: number) {
