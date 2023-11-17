@@ -10,6 +10,7 @@
     "test-employees": "npx playwright test tests/employees/ --workers 2",
     "test-group-training": "npx playwright test tests/groupTraining/ --workers 2",
     "test-notes": "npx playwright test tests/notes/ --workers 2",
+    "test-payments": "npx playwright test tests/payments/ --workers 1",
     "test-payments-plans": "npx playwright test tests/paymentsPlans/ --workers 1",
     "test-users": "npx playwright test tests/users/ --workers 1",
     "test-user-payments-plans": "npx playwright test tests/users/ --workers 2",

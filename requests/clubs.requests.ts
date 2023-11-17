@@ -1,6 +1,6 @@
 import { APIResponse } from "@playwright/test";
 import BaseRequests from "./baseRequests.request";
-import paths from "../api.json"
+import paths from "api.json"
 
 export default class ClubRequests extends BaseRequests {
 

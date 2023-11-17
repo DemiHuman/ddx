@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
-import { getBaseUserData, getBaseUserDataWithoutPasswordFild, sportExperienceTypes } from '../../entities/baseParameters';
-import UserRequests from '../../requests/user.requests';
+import { getBaseUserData, getBaseUserDataWithoutPasswordFild, sportExperienceTypes } from '@entities/baseParameters';
+import UserRequests from '@requests/user.requests';
 
 test.describe("Тесты на создание нового клиента", async () => {
     test("[pozitive] Создание нового клиента", async ({ request }) => {

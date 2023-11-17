@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
-import api from "../../api.json";
-import { getBaseParameters } from '../../entities/baseParameters';
+import api from "api.json";
+import { getBaseParameters } from '@entities/baseParameters';
 
 test.describe("АПИ  тесты на получение списка клубов", async () => {
     test("[pozitive] Получить список клубов", async ({ request }) => {
