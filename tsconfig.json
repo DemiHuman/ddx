@@ -11,7 +11,7 @@
         "allowSyntheticDefaultImports": true,
         "strictNullChecks": true,
         "baseUrl": ".",
-        "types": ["node", "@wdio/globals/types", "webdriverio/async", "mocha", "expect-webdriverio"],
+        "types": ["node"],
         "esModuleInterop": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
