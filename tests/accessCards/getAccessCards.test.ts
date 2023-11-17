@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
-import { getBaseCardData, getBaseParameters } from '../entities/baseParameters';
-import AccessCardsRequests from '../requests/accessCards.requests';
+import { getBaseCardData, getBaseParameters } from '../../entities/baseParameters';
+import AccessCardsRequests from '../../requests/accessCards.requests';
 
 test.describe("API тесты на получение информации о карт доступа", () => {
     test("[pozitive] Получить информацию о карте доступа", async ({ request }) => {
