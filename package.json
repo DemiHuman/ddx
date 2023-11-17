@@ -14,7 +14,9 @@
     "test-payments-plans": "npx playwright test tests/paymentsPlans/ --workers 1",
     "test-users": "npx playwright test tests/users/ --workers 1",
     "test-user-payments-plans": "npx playwright test tests/users/ --workers 2",
-    "test-verify-code": "npx playwright test tests/verifyCode/ --workers 2"
+    "test-verify-code": "npx playwright test tests/verifyCode/ --workers 2",
+    "allure-clean": "npx allure generate my-allure-results -o allure-report --clean",
+    "allure-open": "npx allure open"
   },
   "keywords": [],
   "author": "",
