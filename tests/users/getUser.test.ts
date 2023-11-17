@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
-import ClubRequests from '../requests/clubs.requests';
-import { getBaseParameters, getBaseUserDataWithDetailingClubId } from '../entities/baseParameters';
-import UserRequests from '../requests/user.requests';
+import ClubRequests from '../../requests/clubs.requests';
+import { getBaseParameters, getBaseUserDataWithDetailingClubId } from '../../entities/baseParameters';
+import UserRequests from '../../requests/user.requests';
 
 
 test.describe("API тесты на получение пользователя", () => {
