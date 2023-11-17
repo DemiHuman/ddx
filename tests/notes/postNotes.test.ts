@@ -1,6 +1,6 @@
-import { expect, request, test } from '@playwright/test';
-import api from "../../api.json";
-import { getBaseNoteData } from '../../entities/baseParameters';
+import { expect, test } from '@playwright/test';
+import api from "api.json";
+import { getBaseNoteData } from '@entities/baseParameters';
 
 test.describe("Тесты на заметки", async () => {
     test("[pozitive] Создание новой заметки", async ({ request }) => {

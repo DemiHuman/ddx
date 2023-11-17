@@ -1,4 +1,4 @@
-import { getRandomEmail, getRandomNumber, getRandomPhone, getRandomRequestId, getRandomSessionId } from "../utils/randomUtils";
+import { getRandomEmail, getRandomNumber, getRandomPhone, getRandomRequestId, getRandomSessionId } from "@utils/randomUtils";
 
 export async function getBaseParameters(): Promise<object> {
     return { 
@@ -8,7 +8,7 @@ export async function getBaseParameters(): Promise<object> {
             };
 };
 
-export async function getBaseUserData(sport_experience: string = "Нет опыта"): Promise<object> {
+export async function getBaseUserData(sportExperience: string = "Нет опыта"): Promise<object> {
     return { 
                 session_id: await getRandomSessionId(),
                 request_id: await getRandomRequestId(),
@@ -28,11 +28,11 @@ export async function getBaseUserData(sport_experience: string = "Нет опы�
                     club_access: false,
                     admin_panel_access: false,
                     class_registration_access: false,
-                    sport_experience: sport_experience
+                    sport_experience: sportExperience
                 }};
 };
 
-export async function getBaseUserDataWithDetailingClubId(club_id: number): Promise<object> {
+export async function getBaseUserDataWithDetailingClubId(clubId: number): Promise<object> {
     return { 
                 session_id: await getRandomSessionId(),
                 request_id: await getRandomRequestId(),
@@ -48,7 +48,7 @@ export async function getBaseUserDataWithDetailingClubId(club_id: number): Promi
                     birthday: "1993-02-05",
                     lang: "ru",
                     user_foto_id: 4,
-                    home_club_id: club_id,
+                    home_club_id: clubId,
                     club_access: false,
                     admin_panel_access: false,
                     class_registration_access: false,
@@ -57,9 +57,9 @@ export async function getBaseUserDataWithDetailingClubId(club_id: number): Promi
 };
 
 
-export async function getBaseUserDataWithoutPasswordFild(sport_experience?: string): Promise<object> {
-    let sprt_experience: string = "Нет опыта";
-    if(sport_experience != null) sprt_experience = sport_experience;
+export async function getBaseUserDataWithoutPasswordFild(sportExperience?: string): Promise<object> {
+    let sprtExperience: string = "Нет опыта";
+    if(sportExperience != null) sprtExperience = sportExperience;
 
     return { 
                 session_id: await getRandomSessionId(),
@@ -79,7 +79,7 @@ export async function getBaseUserDataWithoutPasswordFild(sport_experience?: stri
                     club_access: false,
                     admin_panel_access: false,
                     class_registration_access: false,
-                    sport_experience: sprt_experience 
+                    sport_experience: sprtExperience
                 }};
 };
 
@@ -111,22 +111,46 @@ export async function getBaseNoteData(): Promise<object> {
                 user_id: 1319472,
                 type: "notify"
             }]
-    }
+    };
 };
 
-export async function getUserPaymentPlansData(club_id: number): Promise<object> {
+export async function getUserPaymentPlansData(clubId: number = 5): Promise<object> {
     return {   
         session_id: await getRandomSessionId(),
         request_id: await getRandomRequestId(),
         request_source: "crm",
         start_date: "2023-11-20",
         payment_plan_id: 18,
-        club_id: club_id,
+        club_id: clubId,
         verification_token: "cdcd4d4b-91b1-4c8b-9a5a-c1ebb65b5392",
         discount_id: 199
-    }
+    };
 };
 
+export async function getPaymentData(
+    userId: number, 
+    paymentType: string, 
+    transactionProviders: number, 
+    transactionGate: number, 
+    paymentProviders: number, 
+    userPaymentPlanId: number) {
+    return {
+            ...await getBaseParameters(),
+            provider_id: transactionProviders,
+            type: paymentType,
+            gate_id: transactionGate,
+            user_id: userId,
+            user_payment_plan_id: userPaymentPlanId,
+            currency: "RUB",
+            payment_service_id: paymentProviders,
+            employee_id: 100473,
+            fiscal_method: "OrangeData",
+            widget_settings: {
+                success_page: "https://successpage.ru",
+                fault_page: "https://faultpage.ru"
+            }
+        };
+};
 
 export const sportExperienceTypes = [
     "Нет опыта", 

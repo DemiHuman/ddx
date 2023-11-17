@@ -1,7 +1,6 @@
 import { APIRequestContext, APIResponse, expect } from "@playwright/test";
-import paths from "../api.json"
-import { log } from "../utils/loggers";
-
+import paths from "api.json"
+import { log } from "@utils/loggers";
 
 export default class BaseRequests {
     

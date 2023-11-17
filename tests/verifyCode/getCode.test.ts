@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
-import ClubRequests from '../../requests/clubs.requests';
-import { getBaseParameters, getBaseUserDataWithDetailingClubId } from '../../entities/baseParameters';
-import UserRequests from '../../requests/user.requests';
-import VerifyRequests from '../../requests/verify.request';
+import ClubRequests from '@requests/clubs.requests';
+import { getBaseParameters, getBaseUserDataWithDetailingClubId } from '@entities/baseParameters';
+import UserRequests from '@requests/user.requests';
+import VerifyRequests from '@requests/verify.request';
 
 
 test.describe("API тесты на отправку кода верификации клиенту", () => {
