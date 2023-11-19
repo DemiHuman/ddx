@@ -114,15 +114,15 @@ export async function getBaseNoteData(): Promise<object> {
     };
 };
 
-export async function getUserPaymentPlansData(clubId: number = 5): Promise<object> {
+export async function getUserPaymentPlansData(clubId: number = 5, paymentPlanId: number = 18): Promise<object> {
     return {   
         session_id: await getRandomSessionId(),
         request_id: await getRandomRequestId(),
         request_source: "crm",
-        start_date: "2023-11-20",
-        payment_plan_id: 18,
+        start_date: "2023-11-30",
+        payment_plan_id: paymentPlanId,
         club_id: clubId,
-        verification_token: "cdcd4d4b-91b1-4c8b-9a5a-c1ebb65b5392",
+        verification_token: "7d64375d-614f-4a03-83ce-b3318cdc85eb",
         discount_id: 199
     };
 };
@@ -130,19 +130,19 @@ export async function getUserPaymentPlansData(clubId: number = 5): Promise<objec
 export async function getPaymentData(
     userId: number, 
     paymentType: string, 
-    transactionProviders: number | null, 
-    transactionGate: number, 
-    paymentProviders: number, 
+    transactionProvidersId: number | null, 
+    transactionGateId: number, 
+    paymentProvidersId: number, 
     userPaymentPlanId: number) {
     return {
             ...await getBaseParameters(),
-            provider_id: transactionProviders,
+            provider_id: transactionProvidersId,
             type: paymentType,
-            gate_id: transactionGate,
+            gate_id: transactionGateId,
             user_id: userId,
             user_payment_plan_id: userPaymentPlanId,
             currency: "RUB",
-            payment_service_id: paymentProviders,
+            payment_service_id: paymentProvidersId,
             employee_id: 100473,
             fiscal_method: "OrangeData",
             widget_settings: {

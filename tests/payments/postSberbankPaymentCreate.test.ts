@@ -12,7 +12,8 @@ import { PaymentsStatuses } from '@libs/paymentsStatuses';
 
 let userId: number;
 let userPaymentPlanId: number;
-const clubId = 17; //id клуба, где шлюз Сбера
+const clubId = 17; // id клуба, где шлюз Сбера
+const paymentPlanId = 20; // Light 1месяц
 
 test.beforeEach(async ({ request }) => {
     userId = await test.step("Получение id клиента", async () => {
@@ -22,7 +23,7 @@ test.beforeEach(async ({ request }) => {
 
    userPaymentPlanId = await test.step("Получение id подписки клиента", async () => {
     const response = await new UsersPaymentsPlansRequests(request).postAddUserPaymentPlansForUser(
-        Statuses.OK, userId, {...await getUserPaymentPlansData()});
+        Statuses.OK, userId, {...await getUserPaymentPlansData(clubId, paymentPlanId)});
         return (await response.json()).data[0].id;
     });
 });
@@ -36,7 +37,7 @@ test.describe("АПИ тесты на создание запроса на оп�
                     ...await getPaymentData(
                     userId, 
                     PaymentTypes.PAYMENT,
-                    TransactionProviders.SUBSCRIPTION_PAYMENT,
+                    TransactionProviders.SUBSCRIPTION_REGISTRATION,
                     TransactionGates.CRM,
                     PaymentProviders.SBERBANK, 
                     userPaymentPlanId

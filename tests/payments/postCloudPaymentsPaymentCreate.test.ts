@@ -35,7 +35,7 @@ test.describe("АПИ тесты на создание запроса на оп�
                     ...await getPaymentData(
                     userId, 
                     PaymentTypes.PAYMENT,
-                    TransactionProviders.SUBSCRIPTION_PAYMENT,
+                    TransactionProviders.SUBSCRIPTION_REGISTRATION,
                     TransactionGates.CRM,
                     PaymentProviders.CLOUD_PAYMENTS, 
                     userPaymentPlanId
