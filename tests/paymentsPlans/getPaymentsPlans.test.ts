@@ -12,5 +12,5 @@ test.describe("АПИ  тесты на получение списка тари�
         };
 
         await new PaymentsPlansRequests(request).getPaymentsPlans(Statuses.OK, parameters);
-    })
+    });
 });

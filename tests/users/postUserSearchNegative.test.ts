@@ -1,8 +1,10 @@
 import { expect, test } from '@playwright/test';
 import UserRequests from '@requests/user.requests';
-import { getBaseParameters, getBaseUserData } from '@entities/baseParameters';
+import { getBaseParameters } from '@entities/baseParameters';
 import { Statuses } from '@libs/statuses';
-import { getRandomLastName, getRandomPhone } from '@utils/randomUtils';
+import {getRandomEmail, getRandomLastName, getRandomPhone} from '@utils/randomUtils';
+import {getUserRequestJson} from "@entities/user.requestJson";
+import ClubRequests from "@requests/clubs.requests";
 
 let User: {
     name: string,
@@ -12,9 +14,14 @@ let User: {
 };
 
 test.beforeAll(async ({ request }) => {
+    const clubId = await test.step("Получение id клуба", async () => {
+        const clubGetResponse = await new ClubRequests(request).getClubs(Statuses.OK, {...await getBaseParameters()});
+        return (await clubGetResponse.json()).data[0].id;
+    });
+
     await test.step("Добавление нового пользователя", async () => {
-        const response = (await new UserRequests(request).postCreateUser(
-            Statuses.OK, {...await getBaseUserData()}));
+        const requestBody = await getUserRequestJson(clubId, await getRandomEmail(), await getRandomPhone());
+        const response = await new UserRequests(request).postCreateUser(Statuses.OK, requestBody);
 
         const responseBody = (await response.json()).data;
 
