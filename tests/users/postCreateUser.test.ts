@@ -1,19 +1,21 @@
 import { test } from '@playwright/test';
-import { getBaseUserData, getBaseUserDataWithoutPasswordFild, sportExperienceTypes } from '@entities/baseParameters';
+import { getBaseUserData, getBaseUserDataWithoutPasswordFild } from '@entities/baseParameters';
 import UserRequests from '@requests/user.requests';
+import {SportExperience} from "@libs/sportExperience";
+import {Statuses} from "@libs/statuses";
 
 test.describe("Тесты на создание нового клиента", async () => {
     test("[pozitive] Создание нового клиента", async ({ request }) => {
-        await new UserRequests(request).postCreateUser(200, {...await getBaseUserData()});
+        await new UserRequests(request).postCreateUser(Statuses.OK, {...await getBaseUserData()});
     });
 
-    sportExperienceTypes.forEach(sportExperience => {
+    Object.values(SportExperience).forEach(sportExperience => {
         test(`[pozitive] Создание нового клиента c опытом: ${sportExperience}`, async ({ request }) => {
-            await new UserRequests(request).postCreateUser(200, {...await getBaseUserData(sportExperience)});
+            await new UserRequests(request).postCreateUser(Statuses.OK, {...await getBaseUserData(sportExperience)});
         });
     });
 
     test("[negative] Создание нового клиента без поля 'password'", async ({ request }) => {
-        await new UserRequests(request).postCreateUser(200, {...await getBaseUserDataWithoutPasswordFild()});
+        await new UserRequests(request).postCreateUser(Statuses.OK, {...await getBaseUserDataWithoutPasswordFild()});
     });
 });

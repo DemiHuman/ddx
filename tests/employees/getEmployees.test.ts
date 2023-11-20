@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 import api from "api.json";
 import { clubsId, getBaseParameters } from '@entities/baseParameters';
 import { log } from '@utils/loggers';
+import {Statuses} from "@libs/statuses";
 
 test.describe("Тесты по сотрудникам", async () => {
     test("[pozitive] Получение информации по сотрудникам", async ({ request }) => {
@@ -14,7 +15,7 @@ test.describe("Тесты по сотрудникам", async () => {
                 params: {...await getBaseParameters()},
             });
 
-        expect(response.status(), await response.text()).toBe(200);
+        expect(response.status(), await response.text()).toBe(Statuses.OK);
     });
 
 
@@ -38,7 +39,7 @@ test.describe("Тесты по сотрудникам", async () => {
             
             log("request status", response.status());
             log("response body", responseBody.data.map(item => item.name));
-            expect(response.status(), await response.text()).toBe(200);
+            expect(response.status(), await response.text()).toBe(Statuses.OK);
         });
     });
 });

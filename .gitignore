@@ -7,3 +7,4 @@ node_modules/
 /allure-report/
 api.json
 test-result.json
+/.idea/*
