@@ -108,7 +108,7 @@ export async function getBaseNoteData(): Promise<object> {
             {
                 text: "Гладиолус",
                 employee_id: 100473,
-                user_id: 1319472,
+                user_id: 1329470,
                 type: "notify"
             }]
     };
@@ -122,7 +122,7 @@ export async function getUserPaymentPlansData(clubId: number = 5, paymentPlanId:
         start_date: "2023-11-30",
         payment_plan_id: paymentPlanId,
         club_id: clubId,
-        verification_token: "7d64375d-614f-4a03-83ce-b3318cdc85eb",
+        verification_token: "91993aea-7129-4636-ad1e-412abf611316",
         discount_id: 199
     };
 };
