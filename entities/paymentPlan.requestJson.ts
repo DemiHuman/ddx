@@ -9,7 +9,7 @@ export interface PaymentPlanDataRequestJson extends BaseRequestJson {
     discount_id: number,
     start_date: string,
     verification_token: string
-};
+}
 
 export const getPaymentPlanRequestJson = async (userId: number, clubId: number, paymentPlanId: number = 18): Promise<PaymentPlanDataRequestJson> => {
     return {
