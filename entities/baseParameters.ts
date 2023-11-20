@@ -1,4 +1,4 @@
-import { getRandomEmail, getRandomNumber, getRandomPhone, getRandomRequestId, getRandomSessionId } from "@utils/randomUtils";
+import { getRandomEmail, getRandomFirstName, getRandomLastName, getRandomNumber, getRandomPhone, getRandomRequestId, getRandomSessionId } from "@utils/randomUtils";
 
 export async function getBaseParameters(): Promise<object> {
     return { 
@@ -15,8 +15,8 @@ export async function getBaseUserData(sportExperience: string = "Нет опыт
                 request_source: "crm",
                 data: {
                     email: await getRandomEmail(),
-                    name: "Гладиолус",
-                    last_name: "Гладиолусов",
+                    name: await getRandomFirstName(),
+                    last_name: await getRandomLastName(),
                     middle_name: "Гладиолусович",
                     sex: "male",
                     password: "qwerty123",
@@ -39,8 +39,8 @@ export async function getBaseUserDataWithDetailingClubId(clubId: number): Promis
                 request_source: "crm",
                 data: {
                     email: await getRandomEmail(),
-                    name: "Гладиолус",
-                    last_name: "Гладиолусов",
+                    name: await getRandomFirstName(),
+                    last_name: await getRandomLastName(),
                     middle_name: "Гладиолусович",
                     sex: "male",
                     password: "qwerty123",
@@ -67,8 +67,8 @@ export async function getBaseUserDataWithoutPasswordFild(sportExperience?: strin
                 request_source: "crm",
                 data: {
                     email: await getRandomEmail(),
-                    name: "Гладиолус",
-                    last_name: "Гладиолусов",
+                    name: await getRandomFirstName(),
+                    last_name: await getRandomLastName(),
                     middle_name: "Гладиолусович",
                     sex: "male",
                     phone: await getRandomPhone(),
@@ -107,22 +107,22 @@ export async function getBaseNoteData(): Promise<object> {
         data: [
             {
                 text: "Гладиолус",
-                employee_id: 100473,
-                user_id: 1319472,
+                employee_id: 4577,
+                user_id: 1329470,
                 type: "notify"
             }]
     };
 };
 
-export async function getUserPaymentPlansData(clubId: number = 5): Promise<object> {
+export async function getUserPaymentPlansData(clubId: number = 5, paymentPlanId: number = 18): Promise<object> {
     return {   
         session_id: await getRandomSessionId(),
         request_id: await getRandomRequestId(),
         request_source: "crm",
-        start_date: "2023-11-20",
-        payment_plan_id: 18,
+        start_date: "2023-11-30",
+        payment_plan_id: paymentPlanId,
         club_id: clubId,
-        verification_token: "cdcd4d4b-91b1-4c8b-9a5a-c1ebb65b5392",
+        verification_token: "91993aea-7129-4636-ad1e-412abf611316",
         discount_id: 199
     };
 };
@@ -130,20 +130,20 @@ export async function getUserPaymentPlansData(clubId: number = 5): Promise<objec
 export async function getPaymentData(
     userId: number, 
     paymentType: string, 
-    transactionProviders: number, 
-    transactionGate: number, 
-    paymentProviders: number, 
+    transactionProvidersId: number | null, 
+    transactionGateId: number, 
+    paymentProvidersId: number, 
     userPaymentPlanId: number) {
     return {
             ...await getBaseParameters(),
-            provider_id: transactionProviders,
+            provider_id: transactionProvidersId,
             type: paymentType,
-            gate_id: transactionGate,
+            gate_id: transactionGateId,
             user_id: userId,
             user_payment_plan_id: userPaymentPlanId,
             currency: "RUB",
-            payment_service_id: paymentProviders,
-            employee_id: 100473,
+            payment_service_id: paymentProvidersId,
+            employee_id: 4577,
             fiscal_method: "OrangeData",
             widget_settings: {
                 success_page: "https://successpage.ru",
