@@ -1,0 +1,14 @@
+{
+  "firstName": "Тест",
+  "lastName": "Тестов",
+  "middleName": "Тестович",
+  "birthday": "1993-02-05",
+  "sex": {
+    "male": "male",
+    "female": "female"
+  },
+  "password": "qwerty123",
+  "userPhotoId": 4,
+  "home_club_id": 5,
+  "lang": "ru"
+}

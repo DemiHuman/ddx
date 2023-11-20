@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 import api from "api.json";
 import { getBaseParameters } from '@entities/baseParameters';
+import {Statuses} from "@libs/statuses";
 
 test.describe("АПИ  тесты на получение списка клубов", async () => {
     test("[pozitive] Получить список клубов", async ({ request }) => {
@@ -13,7 +14,7 @@ test.describe("АПИ  тесты на получение списка клуб�
                 params: {...await getBaseParameters()}
             });
 
-        expect(response.status(), await response.text()).toBe(200);
+        expect(response.status(), await response.text()).toBe(Statuses.OK);
     });
 
     test("[negative] Тест не возвращает список клубов", async ({ request }) => {
@@ -30,7 +31,7 @@ test.describe("АПИ  тесты на получение списка клуб�
                 }
             });
 
-        expect(response.status(), await response.text()).not.toBe(200);
+        expect(response.status(), await response.text()).not.toBe(Statuses.OK);
     });
 
 });

@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 import api from "api.json";
 import { getBaseNoteData } from '@entities/baseParameters';
+import {Statuses} from "@libs/statuses";
 
 test.describe("Тесты на заметки", async () => {
     test("[pozitive] Создание новой заметки", async ({ request }) => {
@@ -13,6 +14,6 @@ test.describe("Тесты на заметки", async () => {
                 data: {...await getBaseNoteData()},
             });
 
-        expect(response.status(), await response.text()).toBe(200);
+        expect(response.status(), await response.text()).toBe(Statuses.OK);
     });
 });

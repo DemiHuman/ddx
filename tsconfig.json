@@ -20,7 +20,9 @@
             "@entities/*": ["entities/*"],
             "@libs/*": ["libs/*"],
             "@utils/*": ["utils/*"],
-            "@PaymentProviders/*": ["PaymentProviders/*"]
+            "@PaymentProviders/*": ["PaymentProviders/*"],
+            "@SportExperience/*": ["SportExperience/*"],
+            "@data/*": ["data/*"]
         }
     }
 }

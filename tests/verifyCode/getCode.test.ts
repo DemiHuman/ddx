@@ -3,6 +3,7 @@ import ClubRequests from '@requests/clubs.requests';
 import { getBaseParameters, getBaseUserDataWithDetailingClubId } from '@entities/baseParameters';
 import UserRequests from '@requests/user.requests';
 import VerifyRequests from '@requests/verify.request';
+import {Statuses} from "@libs/statuses";
 
 
 test.describe("API тесты на отправку кода верификации клиенту", () => {
@@ -12,12 +13,12 @@ test.describe("API тесты на отправку кода верификац�
         const verifyRequests = new VerifyRequests(request);
 
         const club_id = await test.step("Получение id клуба", async () => {
-            const clubGetResponse = await clubRequests.getClubs(200, {...await getBaseParameters()});
+            const clubGetResponse = await clubRequests.getClubs(Statuses.OK, {...await getBaseParameters()});
             return (await clubGetResponse.json()).data[0].id;
         });
 
         const {userId, userPhone} = await test.step("Получить id клиента", async () => {
-            const response =  (await (await userRequests.postCreateUser(200, {...await getBaseUserDataWithDetailingClubId(club_id)})).json()).data;
+            const response =  (await (await userRequests.postCreateUser(Statuses.OK, {...await getBaseUserDataWithDetailingClubId(club_id)})).json()).data;
             return { userId: response.id, userPhone: response.phone };
         });
 
@@ -31,7 +32,7 @@ test.describe("API тесты на отправку кода верификац�
                     user_id: userId
                 }
             };
-            const response = await verifyRequests.postGetCod(200, requestBody);
+            const response = await verifyRequests.postGetCod(Statuses.OK, requestBody);
             return response.json();
         });
 
