@@ -1,9 +1,11 @@
 import { expect, test } from '@playwright/test';
 import ClubRequests from '@requests/clubs.requests';
-import { getBaseParameters, getBaseUserDataWithDetailingClubId } from '@entities/baseParameters';
+import { getBaseParameters } from '@entities/baseParameters';
 import UserRequests from '@requests/user.requests';
 import VerifyRequests from '@requests/verify.request';
 import {Statuses} from "@libs/statuses";
+import {getUserRequestJson} from "@entities/user.requestJson";
+import {getRandomEmail, getRandomPhone} from "@utils/randomUtils";
 
 
 test.describe("API тесты на отправку кода верификации клиенту", () => {
@@ -12,14 +14,19 @@ test.describe("API тесты на отправку кода верификац�
         const clubRequests = new ClubRequests(request);
         const verifyRequests = new VerifyRequests(request);
 
-        const club_id = await test.step("Получение id клуба", async () => {
+        const clubId = await test.step("Получение id клуба", async () => {
             const clubGetResponse = await clubRequests.getClubs(Statuses.OK, {...await getBaseParameters()});
             return (await clubGetResponse.json()).data[0].id;
         });
 
         const {userId, userPhone} = await test.step("Получить id клиента", async () => {
-            const response =  (await (await userRequests.postCreateUser(Statuses.OK, {...await getBaseUserDataWithDetailingClubId(club_id)})).json()).data;
-            return { userId: response.id, userPhone: response.phone };
+            const requestBody = await getUserRequestJson(clubId, await getRandomEmail(), await getRandomPhone());
+            const response =  await userRequests.postCreateUser(Statuses.OK, requestBody);
+            const responseBody = (await response.json()).data;
+            return {
+                userId: responseBody.id,
+                userPhone: responseBody.phone
+            };
         });
 
         const response = await test.step("Отправить код верификации клиенту", async () => {
